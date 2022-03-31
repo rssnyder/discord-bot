@@ -53,16 +53,18 @@ func main() {
 					}
 				}
 			}
-			switch *status {
-			case 0:
-				err = dg.UpdateGameStatus(0, *activity)
-			case 1:
-				err = dg.UpdateListeningStatus(*activity)
-			}
-			if err != nil {
-				log.Printf("Unable to set activity: %s\n", err)
-			} else {
-				log.Printf("Set activity: %s\n", *activity)
+			if *activity != "" {
+				switch *status {
+				case 0:
+					err = dg.UpdateGameStatus(0, *activity)
+				case 1:
+					err = dg.UpdateListeningStatus(*activity)
+				}
+				if err != nil {
+					log.Printf("Unable to set activity: %s\n", err)
+				} else {
+					log.Printf("Set activity: %s\n", *activity)
+				}
 			}
 		}
 	}
