@@ -37,6 +37,7 @@ archives:
 changelog:
   sort: asc
 dockers:
+  - dockerfile: Dockerfile.goreleaser
   - image_templates:
     - "gcr.io/rssnyder/discord-bot:{{ .Tag }}"
     - "gcr.io/rssnyder/discord-bot:latest"
