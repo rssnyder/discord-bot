@@ -2,6 +2,8 @@
 
 a simple discord bot that just changes its nickname and/or status
 
+![image](https://user-images.githubusercontent.com/7338312/172267762-4a725451-ac86-4f81-aa3a-6ddd88e7967c.png)
+
 ![GitHub all releases](https://img.shields.io/github/downloads/rssnyder/discord-bot/total?style=flat-square)
 
 ```text
@@ -23,10 +25,6 @@ make sure the bot has "change nickname" permissions in the server if using that 
 ## docker
 
 ### command line
-
-```shell
-docker run -e "TOKEN=<bot token>" -e "NICKNAME=<nickname>" -e "ACTIVITY=<activity>" -e "STATUS=<status>" -e "REFRESH=<refresh>" ghcr.io/rssnyder/discord-bot
-```
 
 ```shell
 docker run -e "TOKEN=XXX..XXX" -e "NICKNAME=some nickname" -e "ACTIVITY=some activity" -e "STATUS=0" -e "REFRESH=5" ghcr.io/rssnyder/discord-bot
@@ -52,16 +50,13 @@ services:
 
 ### download binary
 
+grab a download link from [here](https://github.com/rssnyder/discord-bot/releases).
 ```shell
 curl -L https://github.com/rssnyder/discord-bot/releases/download/v<version>/discord-bot_<version>_<os>_<arch>.tar.gz -o discord-bot.tar.gz
 tar zxf discord-bot.tar.gz
 ```
 
 ### run
-
-```shell
-./discord-bot -token "<bot token>" -nickname "<nickname>" -activity "<activity>" -status "<status>" -refresh "<refresh>"
-```
 
 ```shell
 ./discord-bot -token "XXX..XXX" -nickname "some nickname" -activity "some activity" -status "0" -refresh "5"
