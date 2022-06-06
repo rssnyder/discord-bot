@@ -1,4 +1,5 @@
 FROM golang:1.18-alpine
+LABEL org.opencontainers.image.source https://github.com/rssnyder/discord-bot
 
 WORKDIR /app
 

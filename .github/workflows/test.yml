@@ -23,3 +23,5 @@ jobs:
     - uses: goreleaser/goreleaser-action@v2.8.0
       with:
         args: release --snapshot --rm-dist
+    
+    - run: docker build -t test .
