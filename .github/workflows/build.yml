@@ -10,10 +10,10 @@ permissions:
   packages: write
 
 jobs:
-  go-releaser:
+  go:
     uses: rssnyder/actions/.github/workflows/go-releaser.yml@main
     with:
       go-version: 1.19
-  docker-build-and-push:
-    needs: go-releaser
+  docker:
+    needs: go
     uses: rssnyder/actions/.github/workflows/docker-build-and-push.yml@main
