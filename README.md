@@ -10,12 +10,14 @@ a simple discord bot that just changes its nickname and/or status
 Usage of ./discord-bot:
   -activity string
         bot activity
+  -metrics string
+        address for prometheus metric serving (default ":8080")
   -nickname string
         bot nickname
   -refresh int
         seconds between refresh (default 300)
   -status int
-        0: playing, 1: listening
+        0: playing, 1: listening, 2: watching
   -token string
         discord bot token
 ```
