@@ -33,7 +33,9 @@ func init() {
 	reg := prometheus.NewRegistry()
 	reg.MustRegister(updates)
 	http.Handle("/metrics", promhttp.HandlerFor(reg, promhttp.HandlerOpts{Registry: reg}))
-	go http.ListenAndServe(*metrics, nil)
+	go func() {
+		log.Fatal(http.ListenAndServe(*metrics, nil))
+	}()
 }
 
 func main() {
