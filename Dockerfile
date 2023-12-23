@@ -11,4 +11,4 @@ COPY *.go ./
 
 RUN go build -o /discord-bot
 
-ENTRYPOINT /discord-bot -token "$TOKEN" -nickname "${NICKNAME:-I am a bot}" -activity "${ACTIVITY:-A special bot}" -status "${STATUS:-0}" -refresh "${REFRESH:-30}" -metrics "${METRICS:-:8080}"
+ENTRYPOINT /discord-bot -token "$TOKEN" -nickname "$NICKNAME" -activity "$ACTIVITY" -status "${STATUS:-0}" -refresh "${REFRESH:-60}" -metrics "${METRICS:-:8080}"
