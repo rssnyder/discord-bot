@@ -1,4 +1,4 @@
-FROM golang:1.19-alpine
+FROM golang:1.19-alpine as golang
 LABEL org.opencontainers.image.source https://github.com/rssnyder/discord-bot
 
 WORKDIR /app
@@ -10,5 +10,9 @@ RUN go mod download
 COPY *.go ./
 
 RUN go build -o /discord-bot
+
+FROM scratch
+
+COPY --from=golang /discord-bot .
 
 ENTRYPOINT /discord-bot -token "$TOKEN" -nickname "$NICKNAME" -activity "$ACTIVITY" -status "${STATUS:-0}" -refresh "${REFRESH:-60}" -metrics "${METRICS:-:8080}"
