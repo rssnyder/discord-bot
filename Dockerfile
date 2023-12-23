@@ -11,7 +11,7 @@ COPY *.go ./
 
 RUN go build -o /discord-bot
 
-FROM scratch
+FROM gcr.io/distroless/static-debian11
 
 COPY --from=golang /discord-bot .
 
