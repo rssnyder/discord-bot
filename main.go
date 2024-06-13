@@ -70,6 +70,13 @@ func main() {
 		return
 	}
 
+	botUser, err := dg.User("@me")
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	log.Printf("Running as %s", botUser.ID)
+
 	guilds, err := dg.UserGuilds(100, "", "")
 	if err != nil {
 		log.Println(err)
