@@ -1,18 +1,24 @@
-FROM golang:1.19-alpine as golang
-LABEL org.opencontainers.image.source https://github.com/rssnyder/discord-bot
+FROM golang:1.22-alpine as base
 
-WORKDIR /app
+LABEL org.opencontainers.image.source = "https://github.com/rssnyder/discord-bot"
 
-COPY go.mod ./
-COPY go.sum ./
+RUN apk --update add ca-certificates
+
+WORKDIR $GOPATH/src/discord-bot/app/
+
+COPY . .
+
 RUN go mod download
+RUN go mod verify
 
-COPY *.go ./
+RUN go build -o /discord-bot .
 
-RUN go build -o /discord-bot
+FROM scratch
 
-# FROM gcr.io/distroless/static-debian11
+COPY --from=base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=base /etc/passwd /etc/passwd
+COPY --from=base /etc/group /etc/group
 
-# COPY --from=golang /discord-bot .
+COPY --from=base /discord-bot .
 
-ENTRYPOINT /discord-bot -token "$TOKEN" -nickname "$NICKNAME" -activity "$ACTIVITY" -status "${STATUS:-0}" -refresh "${REFRESH:-60}" -metrics "${METRICS:-:8080}"
+CMD ["./discord-bot"]
